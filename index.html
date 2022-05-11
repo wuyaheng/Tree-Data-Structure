@@ -316,6 +316,43 @@ class Solution:
           
       return ans[::-1]
 </pre>
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/" target="_blank">https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/</a></p> 
+<pre>
+class Solution:
+  def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+      ans = []
+      
+      if root is None:
+          return ans
+      
+      q = deque([root])
+
+      left_to_right = True
+      
+      while q:
+          level = []
+          for _ in range(len(q)):
+              
+              node = q.popleft()
+              level.append(node.val)
+                  
+              if node.left:
+                  q.append(node.left)
+              
+              if node.right:
+                  q.append(node.right)
+                  
+          if left_to_right:        
+              ans.append(level)
+
+          else:
+              ans.append(level[::-1])
+              
+          left_to_right = not left_to_right
+          
+      return ans
+</pre>
  
 </div>
       </div>
