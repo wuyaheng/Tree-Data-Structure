@@ -423,6 +423,44 @@ class Solution:
               
       return cur.val
 </pre>
+
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/even-odd-tree/" target="_blank">https://leetcode.com/problems/even-odd-tree/</a></p> 
+<pre>
+class Solution:
+  def isEvenOddTree(self, root: Optional[TreeNode]) -> bool:
+      q = deque([root])
+      
+      level = 0
+      
+      while q:
+          arr = []
+          
+          for i in range(len(q)):
+              cur = q.popleft()
+              arr.append(cur.val)
+              
+              if level % 2 == 0:
+                  if arr[i] % 2 == 0:
+                      return False
+                  if i > 0 and arr[i] <= arr[i - 1]:
+                      return False
+              else:
+                  if arr[i] % 2 != 0:
+                      return False
+                  if i > 0 and arr[i] >= arr[i - 1]:
+                      return False
+              
+              if cur.left:
+                  q.append(cur.left)
+                  
+              if cur.right:
+                  q.append(cur.right)
+                  
+          level += 1
+      
+      return True
+</pre>
  
 </div>
       </div>
