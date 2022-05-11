@@ -180,7 +180,7 @@ class Solution:
       if root is None:
           return ans
       
-      while len(stack) > 0:
+      while stack:
           cur = stack.pop()
 
           if cur != None:
@@ -209,7 +209,7 @@ class Solution:
       if root is None:
           return ans
       
-      while len(stack) > 0:
+      while stack:
           cur = stack.pop()
           
           if cur != None:
@@ -227,63 +227,94 @@ class Solution:
       return ans
 </pre>
 
-  <p class="text-center text-muted"><a href="https://leetcode.com/problems/diet-plan-performance/" target="_blank">https://leetcode.com/problems/diet-plan-performance/</a></p> 
+  <p class="text-center text-muted"><a href="https://leetcode.com/problems/binary-tree-inorder-traversal/" target="_blank">https://leetcode.com/problems/binary-tree-inorder-traversal/</a></p> 
 <pre>
 class Solution:
-  def dietPlanPerformance(self, calories: List[int], k: int, lower: int, upper: int) -> int:
-      points = 0
-      running_calories = 0
-      
-      for i in range(len(calories)):
-          running_calories += calories[i]
-          
-          if i >= k - 1:
-              if running_calories < lower:
-                  points -= 1
-              elif running_calories > upper:
-                  points += 1
-                  
-              running_calories -= calories[i - k + 1]
-       
-      return points
-</pre>
-
-<p class="text-center text-muted"><a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank">https://leetcode.com/problems/longest-substring-without-repeating-characters/</a></p> 
-<pre>
-class Solution:
-  def lengthOfLongestSubstring(self, s: str) -> int:
-      unique = set()
-      l = 0
-      ans = 0
-      
-      for r in range(len(s)):
-          while s[r] in unique:
-              unique.remove(s[l])
-              l += 1
-                  
-          unique.add(s[r])
-          
-          ans = max(ans, r - l + 1)
-          
-      return ans
-</pre>
-
-<p class="text-center text-muted"><a href="https://leetcode.com/problems/repeated-dna-sequences/" target="_blank">https://leetcode.com/problems/repeated-dna-sequences/</a></p> 
-<pre>
-class Solution:
-  def findRepeatedDnaSequences(self, s: str) -> List[str]:
+  def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
       ans = []
-      lookup = {}
+      stack = [root]
       
-      for i in range(len(s)):
-          if i - 9 >= 0:
-              t = s[i - 9: i + 1]
-              lookup[t] = lookup.get(t, 0) + 1
+      if root is None:
+          return ans
+      
+      while stack:
+          cur = stack.pop()
+          
+          if cur != None:
+              if cur.right != None:
+                  stack.append(cur.right)
+
+              stack.append(cur)
+              stack.append(None)
+
+              if cur.left != None:
+                  stack.append(cur.left)
+          else:
+              ans.append(stack.pop().val)
               
-              if lookup.get(t) == 2:
-                  ans.append(t)
-                  
       return ans
+</pre>
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">https://leetcode.com/problems/binary-tree-level-order-traversal/</a></p> 
+<pre>
+class Solution:
+  def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:        
+      ans = []
+      
+      if root is None:
+          return ans
+      
+      q = deque([root])
+
+      while q:
+          
+          level = []
+          
+          for _ in range(len(q)):
+              
+              node = q.popleft()
+              level.append(node.val)
+              
+              if node.left:
+                  q.append(node.left)
+                  
+              if node.right:
+                  q.append(node.right)
+                  
+          ans.append(level)
+      
+      return ans
+</pre>
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/binary-tree-level-order-traversal-ii/" target="_blank">https://leetcode.com/problems/binary-tree-level-order-traversal-ii/</a></p> 
+<pre>
+class Solution:
+  def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
+      ans = []
+      
+      if root is None:
+          return ans
+      
+      q = deque([root])
+
+      while q:
+          
+          level = []
+          
+          for _ in range(len(q)):
+              
+              node = q.popleft()      
+              level.append(node.val)
+              
+              if node.left:
+                  q.append(node.left)
+                  
+              if node.right:
+                  q.append(node.right)
+                  
+          ans.append(level)
+          
+      return ans[::-1]
 </pre>
 
 <p class="text-center text-muted"><a href="https://leetcode.com/problems/permutation-in-string/" target="_blank">https://leetcode.com/problems/permutation-in-string/</a></p> 
