@@ -489,7 +489,35 @@ class Solution:
               
       return ans
 </pre>
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/n-ary-tree-postorder-traversal/" target="_blank">https://leetcode.com/problems/n-ary-tree-postorder-traversal/</a></p> 
+<pre>
+class Solution:
+  def postorder(self, root: 'Node') -> List[int]:
+      ans = []
+      
+      if root is None:
+          return ans
+      
+      stack = [root]
+      
+      while stack:
+          cur = stack.pop()
+          
+          if cur != None:
+              stack.append(cur)
+              stack.append(None)
+              
+              for i in range(len(cur.children) - 1, -1, -1):
+                  stack.append(cur.children[i])
+          
+          else:
+              ans.append(stack.pop().val)
+              
+      return ans
+</pre>
  
+
 </div>
       </div>
     </div>
