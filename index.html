@@ -405,6 +405,24 @@ class Solution:
               
       return True
 </pre>
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/find-bottom-left-tree-value/" target="_blank">https://leetcode.com/problems/find-bottom-left-tree-value/</a></p> 
+<pre>
+class Solution:
+  def findBottomLeftValue(self, root: Optional[TreeNode]) -> int:
+      q = deque([root])
+      
+      while q:
+          cur = q.popleft()
+          
+          if cur.right:
+              q.append(cur.right)
+          
+          if cur.left:
+              q.append(cur.left)
+              
+      return cur.val
+</pre>
  
 </div>
       </div>
