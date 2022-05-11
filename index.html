@@ -380,6 +380,31 @@ class Solution:
           
       return ans
 </pre>
+
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/check-completeness-of-a-binary-tree/" target="_blank">https://leetcode.com/problems/check-completeness-of-a-binary-tree/</a></p> 
+<pre>
+class Solution:
+  def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
+      q = deque([root])
+      
+      zero = False
+      
+      while q:
+          cur = q.popleft()
+          
+          if cur is None:
+              zero = True
+          
+          if zero and cur != None:
+              return False
+          
+          if cur != None:
+              q.append(cur.left)
+              q.append(cur.right)
+              
+      return True
+</pre>
  
 </div>
       </div>
