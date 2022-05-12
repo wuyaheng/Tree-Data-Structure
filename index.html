@@ -685,6 +685,26 @@ class Solution:
       self.ans = root
 </pre>
 
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/sum-of-left-leaves/" target="_blank">https://leetcode.com/problems/sum-of-left-leaves/</a></p> 
+<pre>
+class Solution:
+  def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+      self.ans = 0
+        
+      def helper(node):
+          if node is None:
+              return 0
+          if node.left != None and node.left.left == None and node.left.right == None:
+              self.ans += node.left.val
+            
+          helper(node.left)
+          helper(node.right)
+            
+      helper(root)
+      return self.ans
+</pre>
+
 </div>
       </div>
     </div>
