@@ -588,6 +588,25 @@ class Solution:
 
       return a != None and b != None and a.val == b.val and self.sameTree(a.left, b.left) and self.sameTree(a.right, b.right)
 </pre>
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/symmetric-tree/" target="_blank">https://leetcode.com/problems/symmetric-tree/</a></p> 
+<pre>
+class Solution:
+  def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+      if root is None:
+          return True
+      
+      def helper(a, b):
+          if a is None and b is None:
+              return True
+          
+          if a is None or b is None:
+              return False 
+          
+          return a.val == b.val and helper(a.left, b.right) and helper(a.right, b.left)
+      
+      return helper(root.left, root.right)
+</pre>
  
 
 </div>
