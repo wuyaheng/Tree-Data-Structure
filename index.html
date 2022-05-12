@@ -607,6 +607,20 @@ class Solution:
       
       return helper(root.left, root.right)
 </pre>
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/invert-binary-tree/" target="_blank">https://leetcode.com/problems/invert-binary-tree/</a></p> 
+<pre> 
+class Solution:
+  def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+      if root is None:
+          return None
+          
+      temp = self.invertTree(root.right)
+      root.right = self.invertTree(root.left)
+      root.left = temp
+      
+      return root
+</pre>
  
 
 </div>
