@@ -705,6 +705,31 @@ class Solution:
       return self.ans
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/" target="_blank">https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/</a></p> 
+<pre>
+class Solution:
+  def longestConsecutive(self, root: Optional[TreeNode]) -> int:
+      self.max = 1
+        
+      def helper(node, cnt):
+          self.max = max(self.max, cnt)
+            
+          if node.left:
+              if node.left.val == node.val + 1:
+                  helper(node.left, cnt + 1)
+              else:
+                  helper(node.left, 1)
+                
+          if node.right:   
+              if node.right.val == node.val + 1:
+                  helper(node.right, cnt + 1)
+              else:
+                  helper(node.right, 1)
+                
+      helper(root, 1)
+      return self.max 
+</pre>
+
 </div>
       </div>
     </div>
