@@ -623,7 +623,7 @@ class Solution:
 </pre>
 
 <p class="text-center text-muted"><a href="https://leetcode.com/problems/merge-two-binary-trees/" target="_blank">https://leetcode.com/problems/merge-two-binary-trees/</a></p> 
-<pre> 
+<pre>
 class Solution:
   def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
       if root1 is None and root2 is None:
@@ -642,6 +642,29 @@ class Solution:
       root1.right = self.mergeTrees(root1.right, root2.right)
       
       return root1
+</pre>
+
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/balanced-binary-tree/" target="_blank">https://leetcode.com/problems/balanced-binary-tree/</a></p> 
+<pre>
+class Solution:
+  def isBalanced(self, root: Optional[TreeNode]) -> bool:
+      
+      if root is None:
+          return True
+
+      if abs(self.height(root.left) - self.height(root.right)) > 1:
+          return False
+  
+      return self.isBalanced(root.left) and self.isBalanced(root.right)
+      
+      
+  def height(self, root):
+      
+      if root is None:
+          return 0
+      
+      return max(self.height(root.left), self.height(root.right)) + 1
 </pre>
  
 
