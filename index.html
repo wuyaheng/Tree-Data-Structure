@@ -730,6 +730,25 @@ class Solution:
       return self.max 
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/sum-root-to-leaf-numbers/" target="_blank">https://leetcode.com/problems/sum-root-to-leaf-numbers/</a></p> 
+<pre>
+class Solution:
+  def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        
+      def helper(node, num):
+          if node is None:
+              return 0
+            
+          num = num * 10 + node.val
+            
+          if node.left == None and node.right == None:
+              return num
+            
+          return helper(node.left, num) + helper(node.right, num)
+            
+      return helper(root, 0) 
+</pre>
+
 </div>
       </div>
     </div>
