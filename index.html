@@ -798,6 +798,29 @@ class Solution:
           return 2 ** r + self.countNodes(root.left)
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/increasing-order-search-tree/" target="_blank">https://leetcode.com/problems/increasing-order-search-tree/</a></p> 
+<pre>
+class Solution:
+  def increasingBST(self, root: TreeNode) -> TreeNode:
+      dummy = TreeNode(-1)
+      self.cur = dummy
+        
+      def dfs(node):
+          if node == None:
+              return
+            
+          dfs(node.left)
+            
+          self.cur.right = node
+          node.left = None
+          self.cur = self.cur.right
+            
+          dfs(node.right)
+            
+      dfs(root)
+      return dummy.right
+</pre>
+
 </div>
       </div>
     </div>
