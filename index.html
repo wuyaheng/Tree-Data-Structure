@@ -749,6 +749,36 @@ class Solution:
       return helper(root, 0) 
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/" target="_blank">https://leetcode.com/problems/populating-next-right-pointers-in-each-node/</a></p> 
+<pre>
+class Solution:
+  def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+      if root == None:
+          return
+        
+      q = deque([root])
+        
+      while q:
+          k = len(q)
+            
+          level = []
+          for _ in range(k):
+                
+              node = q.popleft()
+              level.append(node)
+                
+              if node.left:
+                  q.append(node.left)
+                    
+              if node.right:
+                  q.append(node.right)
+                
+          for i in range(len(level) - 1):
+              level[i].next = level[i + 1]
+                
+      return root
+</pre>
+
 </div>
       </div>
     </div>
