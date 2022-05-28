@@ -779,6 +779,25 @@ class Solution:
       return root
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/count-complete-tree-nodes/" target="_blank">https://leetcode.com/problems/count-complete-tree-nodes/</a></p> 
+<pre>
+class Solution:
+  def countNodes(self, root: Optional[TreeNode]) -> int:
+      if root == None:
+          return 0
+        
+      def dep(node):
+          if node == None:
+              return 0
+          return 1 + dep(node.left)
+        
+      l, r = dep(root.left), dep(root.right)        
+      if l == r:
+          return 2 ** l + self.countNodes(root.right)
+      else:
+          return 2 ** r + self.countNodes(root.left)
+</pre>
+
 </div>
       </div>
     </div>
