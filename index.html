@@ -172,24 +172,7 @@ pre span {
 
           <p class="text-center text-muted"><a href="https://leetcode.com/problems/binary-tree-preorder-traversal/" target="_blank">https://leetcode.com/problems/binary-tree-preorder-traversal/</a></p>
 <pre>
-class Solution:
-  def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-      ans = []
-      stack = [root]
 
-      if root is None:
-          return ans
-
-      while stack:
-          cur = stack.pop()
-          ans.append(cur.val)
-
-          if cur.right:
-              stack.append(cur.right)
-          if cur.left:
-              stack.append(cur.left)
-      
-      return ans
 </pre>
 
   <p class="text-center text-muted"><a href="https://leetcode.com/problems/binary-tree-postorder-traversal/" target="_blank">https://leetcode.com/problems/binary-tree-postorder-traversal/</a></p>
